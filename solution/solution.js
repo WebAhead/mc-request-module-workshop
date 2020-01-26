@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-const fetchData = (url, cb) => {
+const getRequest = (url, cb) => {
     axios.get(url)
       .then((result) => {
 
@@ -11,24 +11,21 @@ const fetchData = (url, cb) => {
       })
 };
 
-const addData = (newUser, url, cb) => {
-  const { firstName } = newUser
+const postRequest = (body, url, cb) => {
 
-  axios.post(url, {
-    firstName
-  })
+  axios.post(url, body)
     .then((result) => {
 
       cb(null, result)
     })
     .catch((error) => {
-      cb(errpr)
+      cb(error)
     })
 };
 
 
 
 module.exports = {
-  fetchData,
-  addData
+  getRequest,
+  postRequest
 };

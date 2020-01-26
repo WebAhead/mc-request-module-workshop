@@ -4,23 +4,23 @@ const axios = require('axios')
  * @param  {string} url
  * @param  {(error, response) => void} cb
  */
-const fetchData = (url, cb) => {
+const getRequest = (url, cb) => {
   
 };
 
 
 /**
- * @param  {object} newUser
+ * @param  {object} body
  * @param  {string} url
  * @param  {(error, response) => void} cb
  */
-const addData = (newUser, url, cb) => {
+const postRequest = (body, url, cb) => {
 
 };
 
 
 
 module.exports = {
-  fetchData,
-  addData
+  getRequest,
+  postRequest
 };

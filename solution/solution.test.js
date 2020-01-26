@@ -1,11 +1,11 @@
 const test = require('tape');
 const nock = require('nock');
 const {
-  fetchData,
-  addData
+  getRequest,
+  postRequest
 } = require('./solution');
 
-test('fetchData fetches data correctly', t => {
+test('getRequest fetches data correctly', t => {
 
   nock('http://jsonplaceholder.typicode.com')
     .get('/users/1')
@@ -13,7 +13,7 @@ test('fetchData fetches data correctly', t => {
       name: 'Leanne Graham'
     });
 
-    fetchData(
+    getRequest(
     'http://jsonplaceholder.typicode.com/users/1',
     (error, response) => {
       
@@ -38,7 +38,7 @@ test('fetchData fetches data correctly', t => {
 });
 
 
-test('addData adds the new user correctly', t => {
+test('postRequest adds the new user correctly', t => {
 
   nock('http://jsonplaceholder.typicode.com')
     .post('/users')
@@ -46,7 +46,7 @@ test('addData adds the new user correctly', t => {
       success: true
     });
 
-    addData(
+    postRequest(
     { firstName: 'Mario' },
     'http://jsonplaceholder.typicode.com/users',
     (error, response) => {
