@@ -1,46 +1,31 @@
-"use strict";
+const axios = require('axios')
 
-const http = require("http");
+const getRequest = (url, cb) => {
+    axios.get(url)
+      .then((result) => {
 
-const myRequest = (url, cb) => {
-  http
-    .get(url, response => {
-      let data = "";
-      response.on("data", chunk => {
-        data += chunk;
-      });
-      response.on("end", () => {
-        const body = JSON.parse(data);
-        const statusCode = response.statusCode;
-        cb(null, { statusCode, body });
-      });
-    })
-    .on("error", err => cb(err));
+        cb(null, result)
+      })
+      .catch((error) => {
+        cb(error)
+      })
 };
 
-// uncomment below for bonus https solution
+const postRequest = (body, url, cb) => {
 
-// const https = require("https");
+  axios.post(url, body)
+    .then((result) => {
 
-// const myBonusRequest = (url, cb) => {
-//   const protocol = url.includes("https") ? https : http;
-//   protocol
-//     .get(url, response => {
-//       let data = "";
-//       response.on("data", chunk => {
-//         data += chunk;
-//       });
-//       response.on("end", () => {
-//         const body = JSON.parse(data);
-//         const statusCode = response.statusCode;
-//         cb(null, { statusCode, body });
-//       });
-//     })
-//     .on("error", err => cb(err));
-// };
+      cb(null, result)
+    })
+    .catch((error) => {
+      cb(error)
+    })
+};
+
+
 
 module.exports = {
-  myRequest
-  // uncomment line below to export bonus solution
-  // ,myBonusRequest
+  getRequest,
+  postRequest
 };
