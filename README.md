@@ -1,5 +1,5 @@
 # Morning challenge - Build a request module
-This week in your project you will be making API calls from the backend. In the past few weeks you have been making API calls from the frontend with the fetch or XMLHttpRequest object and methods. Now that you are in the backend we would like you to learn how to make similar requests using [Axios](https://www.npmjs.com/package/axios) (which can be also used for frontend and even more compatible than fetch!).
+This week in your project you will be making API calls from the backend. In the past few weeks you have been making API calls from the frontend with the `fetch` method. Now that you are in the backend we would like you to learn how to make similar requests using [Axios](https://www.npmjs.com/package/axios) (which can be also used for frontend and even more compatible than fetch!).
 
 This workshop is intended to familiarise you with how backend requests are made, and practice using [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Examples).
 
@@ -25,6 +25,25 @@ The callback function should take two arguments:
   2. response (Object: includes the body & statusCode of the request)
 
 `addData` should take three arguments: the newUser data, the url to make the request to, and the same callback function as above.
+
+
+**Hint**: You can [create your own promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Examples) using the built-in constructor:
+
+```js
+const buyEggs = (amount) => new Promise((resolve, reject) => {
+  // if we have a successful result we can resolve with it, this will initiate the .then function
+  resolve(result);
+  // if we have an error the promise should reject, this will initiate the .catch function
+  reject(error);
+});
+
+buyEggs(2)
+    .then(() => console.log('Make an omelette'))
+    .catch(() => console.log('ROTTEN, throw away'))
+
+
+```
+
 
 
 ### Start here!
