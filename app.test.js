@@ -5,20 +5,35 @@ const {
   postRequest
 } = require('./app');
 
+const API_URL = 'http://jsonplaceholder.typicode.com'
+
 test('getRequest fetches data correctly', t => {
 
-  nock('http://jsonplaceholder.typicode.com')
+  const url = 'http://jsonplaceholder.typicode.com/users/1'
+
+  // 2 nock listeners, 1 to check if the function returns a prommise
+  // and the second is for the actual test
+  nock(API_URL)
     .get('/users/1')
     .reply(200, {
       name: 'Leanne Graham'
     });
 
-    getRequest(
-    'http://jsonplaceholder.typicode.com/users/1',
-    (error, response) => {
-      
-      t.error(error, 'No Error');
-      
+  nock(API_URL)
+    .get('/users/1')
+    .reply(200, {
+      name: 'Leanne Graham'
+    });
+
+  if (!(getRequest(url) instanceof Promise)) {
+    t.fail('getRequest does not reutrn a promise')
+    t.end()
+    return
+  }
+
+
+  getRequest(url)
+    .then(response => {
       t.equal(
         response.status,
         200,
@@ -32,26 +47,40 @@ test('getRequest fetches data correctly', t => {
       );
 
       t.end();
+    }).catch(err => {
+      console.log('getRequest Error:', err.message)
+      t.fail('An error in getRequest has occured')
+      t.end()
+    })
 
-    }
-  );
 });
 
 
 test('postRequest adds the new user correctly', t => {
 
-  nock('http://jsonplaceholder.typicode.com')
+  const body = { firstName: 'Sneaky panther' }
+  const url = 'http://jsonplaceholder.typicode.com/users'
+
+  nock(API_URL)
     .post('/users')
     .reply(200, {
       success: true
     });
 
-    postRequest(
-    { firstName: 'Mario' },
-    'http://jsonplaceholder.typicode.com/users',
-    (error, response) => {
+  nock(API_URL)
+    .post('/users')
+    .reply(200, {
+      success: true
+    });
 
-      t.error(error, 'No Error');
+  if (!(postRequest(body, url) instanceof Promise)) {
+    t.fail('postRequest does not reutrn a promise')
+    t.end()
+    return
+  }
+
+  postRequest(body, url)
+    .then(response => {
 
       t.equal(
         response.status,
@@ -66,7 +95,9 @@ test('postRequest adds the new user correctly', t => {
       );
 
       t.end();
+    })
+    .catch(err => {
+      t.fail('An error in postRequest has occured')
+    })
 
-    }
-  );
 });

@@ -1,27 +1,24 @@
 const axios = require('axios')
 
-const getRequest = (url, cb) => {
-    axios.get(url)
-      .then((result) => {
+/**
+ * @param  {string} url
+ */
+const getRequest = (url) => new Promise((resolve, reject) =>
+  axios.get(url)
+    .then(response => resolve(response))
+    .catch(err => reject(err))
+)
 
-        cb(null, result)
-      })
-      .catch((error) => {
-        cb(error)
-      })
-};
 
-const postRequest = (body, url, cb) => {
-
+/**
+ * @param  {object} body
+ * @param  {string} url
+ */
+const postRequest = (body, url) => new Promise((resolve, reject) =>
   axios.post(url, body)
-    .then((result) => {
-
-      cb(null, result)
-    })
-    .catch((error) => {
-      cb(error)
-    })
-};
+    .then(response => resolve(response))
+    .catch(err => reject(err))
+)
 
 
 

@@ -2,21 +2,17 @@ const axios = require('axios')
 
 /**
  * @param  {string} url
- * @param  {(error, response) => void} cb
+ * @returns {Promise}
  */
-const getRequest = (url, cb) => {
-  
-};
+const getRequest = (url) => 1
 
 
 /**
  * @param  {object} body
  * @param  {string} url
- * @param  {(error, response) => void} cb
+ * @returns {Promise}
  */
-const postRequest = (body, url, cb) => {
-
-};
+const postRequest = (body, url) => 2
 
 
 
