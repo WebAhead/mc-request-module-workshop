@@ -17,17 +17,12 @@ Create a function called `fetchData` and `addData` which makes a request to an A
 
 **make sure to see the [Axios documentation to solve this challenge](https://www.npmjs.com/package/axios)**
 
-`fetchData` should take two arguments: the url to make the request to, and a callback function.
+`fetchData` takes a url and returns a promise which either resolves with the data or rejected with an error (see the hint below).
 
-The callback function should take two arguments:
-
-  1. error (null if no error occurred; an error object if an error occurred)
-  2. response (Object: includes the body & statusCode of the request)
-
-`addData` should take three arguments: the newUser data, the url to make the request to, and the same callback function as above.
+`addData` should take two arguments: the newUser data, the url to make the request to. also returns a promise.
 
 
-**Hint**: You can [create your own promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Examples) using the built-in constructor:
+You can [create your own promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Examples) using the built-in constructor:
 
 ```js
 const buyEggs = (amount) => new Promise((resolve, reject) => {
