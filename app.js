@@ -4,7 +4,7 @@ const axios = require('axios')
  * @param  {string} url
  * @returns {Promise}
  */
-const getRequest = (url) => 1
+const getRequest = (url) => new Promise((resolve, reject) => 1 /* axios here */)
 
 
 /**
